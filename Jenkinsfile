@@ -7,6 +7,7 @@ pipeline {
             steps {
             echo "fsdsasdfdfsdfsd"
                 echo "fsdsasdfdfsdfsd"
+                 echo "fsdsasdfdfsdfsd"
             }
          }
        }
