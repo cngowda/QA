@@ -6,6 +6,7 @@ pipeline {
         stage('Install dependencies ') {
             steps {
             echo "fsdsasdfdfsdfsd"
+                echo "fsdsasdfdfsdfsd"
             }
          }
        }
