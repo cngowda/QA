@@ -8,6 +8,8 @@ pipeline {
             echo "fsdsasdfdfsdfsd"
                 echo "fsdsasdfdfsdfsd"
                  echo "fsdsasdfdfsdfsd"
+                echo "fsdsasdfdfsdfsd"
+                 echo "fsdsasdfdfsdfsd"
             }
          }
        }
