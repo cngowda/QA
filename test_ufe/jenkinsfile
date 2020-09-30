@@ -50,7 +50,7 @@ pipeline {
                 echo "------------------------------------------------------------------------"
                 dir("${ROOT_TEST_DIR}"){
                 sh "pwd"
-                sh "pytest test_ufe/test_ufe.py --CSP_HOST=${CSP_HOST} --CSP_USER=${CSP_USER} --iteration=${iteration} --refresh=${refresh} -vvs"
+                sh "pytest test_ufe/test_ufe.py --CSP_H=${CSP_HOST} --CSP_U=${CSP_USER} --iteration=${iteration} --refresh=${refresh} -vvs"
                     }
             echo "-------------------------------[END]-----------------------------------------"
             }
