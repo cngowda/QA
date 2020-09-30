@@ -24,7 +24,7 @@ def test_standalone(params):
     csp_load_time = {}
     composite_ui_time = {}
     root_ui_time = {}
-    csp_url = "https://" + params['CSP_HOST'] + "/"
+    csp_url = "https://" + params['CSP_H'] + "/"
     print(f"CSP version: {((requests.get(csp_url + 'atlas/version')).content)}")
     for i in range(1, int(params['iteration']) +1):
         csp_load_time[i] = []
@@ -49,7 +49,7 @@ def test_standalone(params):
 
         #login csp
         element = driver.find_element_by_id("idp-discovery-username")
-        element.send_keys(params['CSP_USER'])
+        element.send_keys(params['CSP_U'])
         element = driver.find_element_by_id("idp-discovery-submit")
         element.click()
         try:
