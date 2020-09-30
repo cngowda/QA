@@ -1,0 +1,60 @@
+pipeline {
+    agent{
+        label 'ATHENA_QA_AUTO_PY3'
+    }
+    environment {
+    SERVICE="athena"
+    ROOT_TEST_DIR="$WORKSPACE/test_ufe"
+  }
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60', daysToKeepStr: '10'))
+  }
+    parameters {
+            string(
+                name: 'CSP_USER',
+                defaultValue: "athena_qa_ft@infoblox.site",
+                description: "Provide username Example: csp-sanity-preprod@infoblox.site csp-ui-test@infoblox.site")
+            string(
+                name: 'CSP_HOST',
+                defaultValue: "env-3.test.infoblox.com",
+                description: "Provide username Example: http://env-3.test.infoblox.com/")
+            string(
+                name: 'iteration',
+                defaultValue: "5",
+                description: "")
+            string(
+                name: 'refresh',
+                defaultValue: "10",
+                description: "")
+    }
+
+   stages {
+        stage('Install dependencies ') {
+            steps {
+                checkout scm
+                echo 'Installing pip packages.......'
+                dir("${env.WORKSPACE}"){
+                    sh "pwd"
+                    echo "cng"
+                    }
+                sh 'sudo $(which pip) install --force-reinstall -r $WORKSPACE/test_ufe/requirements.txt'
+                sh 'sudo $(which pip) freeze'
+                dir("${ROOT_TEST_DIR}"){
+                    sh "pwd"
+                    sh "ls"
+                    }
+            }
+        }
+        stage('Pipeline'){
+            steps{
+                echo "------------------------------------------------------------------------"
+                dir("${ROOT_TEST_DIR}"){
+                sh "pwd"
+                sh "pytest test_ufe.py --CSP_HOST=${CSP_HOST} --CSP_USER=${CSP_USER} --iteration=${iteration} --refresh=${refresh}"
+                    }
+            echo "-------------------------------[END]-----------------------------------------"
+            }
+            }
+           }
+   }
+}
