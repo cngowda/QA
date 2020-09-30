@@ -4,7 +4,7 @@ pipeline {
     }
     environment {
     SERVICE="athena"
-    ROOT_TEST_DIR="$WORKSPACE/test_ufe"
+    ROOT_TEST_DIR="$WORKSPACE/QA"
   }
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60', daysToKeepStr: '10'))
@@ -37,7 +37,7 @@ pipeline {
                     sh "pwd"
                     echo "cng"
                     }
-                sh 'sudo $(which pip) install --force-reinstall -r $WORKSPACE/test_ufe/requirements.txt'
+                sh 'sudo $(which pip) install --force-reinstall -r $WORKSPACE/QA/test_ufe/requirements.txt'
                 sh 'sudo $(which pip) freeze'
                 dir("${ROOT_TEST_DIR}"){
                     sh "pwd"
