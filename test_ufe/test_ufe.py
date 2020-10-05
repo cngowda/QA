@@ -18,6 +18,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
+from pyvirtualdisplay import Display
 
 
 def test_standalone(params):
@@ -32,8 +33,13 @@ def test_standalone(params):
         root_ui_time[i] = []
 
         chrome_options = Options()
+        display = Display(visible=0, size=(800, 800))
+        display.start()
+        chrome_options = Options()
+        chrome_options.add_argument("--disable-extensions")
+        chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument("--start-maximized")
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome('/usr/bin/chromedriver',options=chrome_options)
         #loading time
         time_before_csp_load = time.time()
         driver.get(csp_url)
