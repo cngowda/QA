@@ -1,7 +1,5 @@
 pipeline {
-    agent{
-        label 'Athena_UI_CNG'
-    }
+    agent none
     environment {
     SERVICE="athena"
     ROOT_TEST_DIR="$WORKSPACE/QA"
@@ -29,6 +27,13 @@ pipeline {
     }
 
    stages {
+        stage('Prep') {
+            steps {
+                script {
+                    agentName = "Athena_UI_CNG"
+                }
+            }
+        }
         stage('Install dependencies ') {
             steps {
                 checkout scm
