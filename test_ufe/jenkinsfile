@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent Athena_UI_CNG
     environment {
     SERVICE="athena"
     ROOT_TEST_DIR="$WORKSPACE/QA"
