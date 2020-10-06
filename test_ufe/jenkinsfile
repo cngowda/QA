@@ -1,6 +1,6 @@
 pipeline {
     agent{
-        label 'ATHENA_QA_AUTO_PY3'
+        label 'Athena_CNG'
     }
     environment {
     SERVICE="athena"
